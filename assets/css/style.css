@@ -1,0 +1,153 @@
+/* assets/css/style.css */
+
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Hero section corregido */
+/* Hero section corregido con tu ruta exacta */
+.hero-section {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(250, 246, 246, 0.726)),
+        url('../../images/hotel-hero.jpg') no-repeat center center/cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    background-color: rgba(245, 245, 239, 0.066);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.hero-content.text-white {
+    color: #fbf7f7 !important;
+}
+.hero-content {
+    max-width: 800px;
+    padding: 2rem;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgb(243, 241, 241);
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+/* Tablas */
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+}
+
+/* Alertas */
+.alert {
+    border-radius: 8px;
+}
+
+/* Formularios */
+.form-control, .form-select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 50vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Iconos */
+.fas, .fab {
+    margin-right: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: white;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+}
+
+.social-links a:hover {
+    color: #0d6efd !important;
+}
+
+/* Habitaciones */
+.room-img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Reservas */
+.reservation-item {
+    transition: all 0.3s ease;
+}
+
+.reservation-item:hover {
+    background-color: #f8f9fa;
+    transform: translateX(5px);
+}
