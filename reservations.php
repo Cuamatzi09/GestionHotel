@@ -23,8 +23,12 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                 $_SESSION['success_message'] = "Reserva cancelada exitosamente.";
                 header('Location: reservations.php');
                 exit();
+            } else {
+                $error = "Error al cancelar la reserva.";
             }
         }
+    } else {
+        $error = "Reserva no encontrada o no tienes permiso para esta acción.";
     }
 }
 
@@ -52,6 +56,12 @@ $reservations = $stmt->fetchAll();
             <div class="alert alert-success">
                 <?php echo $_SESSION['success_message']; ?>
                 <?php unset($_SESSION['success_message']); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (isset($error)): ?>
+            <div class="alert alert-danger">
+                <?php echo $error; ?>
             </div>
         <?php endif; ?>
         
@@ -92,15 +102,19 @@ $reservations = $stmt->fetchAll();
                                     elseif ($reservation['status'] === 'cancelled') $status_class = 'danger';
                                     ?>
                                     <span class="badge bg-<?php echo $status_class; ?>">
-                                        <?php echo ucfirst($reservation['status']); ?>
+                                        <?php 
+                                        if ($reservation['status'] === 'confirmed') echo 'Confirmada';
+                                        elseif ($reservation['status'] === 'pending') echo 'Pendiente';
+                                        elseif ($reservation['status'] === 'cancelled') echo 'Cancelada';
+                                        ?>
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="reservations.php?action=view&id=<?php echo $reservation['id']; ?>" class="btn btn-sm btn-outline-primary">
+                                    <a href="reservations.php?action=view&id=<?php echo $reservation['id']; ?>" class="btn btn-sm btn-outline-primary" title="Ver detalles">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                     <?php if ($reservation['status'] === 'confirmed' && strtotime($reservation['check_in']) > time()): ?>
-                                        <a href="reservations.php?action=cancel&id=<?php echo $reservation['id']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro?')">
+                                        <a href="reservations.php?action=cancel&id=<?php echo $reservation['id']; ?>" class="btn btn-sm btn-outline-danger" title="Cancelar reserva" onclick="return confirm('¿Estás seguro de que deseas cancelar esta reserva?');">
                                             <i class="fas fa-times"></i>
                                         </a>
                                     <?php endif; ?>
