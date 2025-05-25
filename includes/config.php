@@ -2,21 +2,21 @@
 // includes/config.php
 session_start();
 
-// Configuración de la base de datos
-$host = "sql203.infinityfree.com"; // Host de InfinityFree
-$dbname = "if0_39072062_hotel_reservations";  // Nombre de tu BD
-$user = "if0_39072062";             // Usuario
-$pass = "Churritos09";          // Contraseña
+// Configuración para InfinityFree
+define('DB_HOST', 'sql203.infinityfree.com');
+define('DB_NAME', 'if0_39072062_hotel_reservations');
+define('DB_USER', 'if0_39072062');
+define('DB_PASS', 'Churritos09');
 
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "¡Conexión exitosa!";
-} catch (PDOException $e) {
-    echo "Error de conexión: " . $e->getMessage();
-}
-
-// Configuración del sitio
+// Configuración del sitio (¡cambia por tu URL real!)
 define('SITE_NAME', 'Luxury Hotel');
-define('SITE_URL', 'http://localhost/hotel');
+define('SITE_URL', 'https://luxuryhotel.infinityfreeapp.com/'); 
+
+// Conexión a la base de datos
+try {
+    $pdo = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASS);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
+}
 ?>
